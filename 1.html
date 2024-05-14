@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>Text color editor</title>
+
+	<!-- Linking required stylesheets -->
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+	<link rel='stylesheet' href='https://fonts.googleapis.com/css?family=Source Code Pro'>
+    <link rel='stylesheet' href='https://fonts.googleapis.com/css?family=Azeret Mono'>
+    <link rel='stylesheet' href='https://fonts.googleapis.com/css?family=Roboto Mono'>
+
+	<style>
+		.toolbar img{
+			width: 20px;
+			padding-right: 25px;
+			cursor: pointer;
+		}
+
+		.toolbar input[type="color"],select,button{
+			margin-right: 25px;
+		}
+
+		.toolbar option, select{
+			font-size: 1.2rem;
+		}
+
+		.toolbar button{
+			font-size: 1rem;
+		}
+
+		.toolbar{
+			background-color: #e8eaed;
+			display: flex;
+			justify-content: center;
+			align-items: center;
+			padding-top: 5px;
+			width: auto;
+			border-radius: 7px;
+		}
+
+		.typing-area textarea{
+			resize: none;
+			width: auto;
+			height: 580px;
+			border-radius: 7px;
+			font-size: 1.6rem;
+		}
+	</style>
+</head>
+<body>
+	<div class="toolbar" id="toolbar">
+		<img src="bold.svg" id="bold-btn" onclick="changeFontWeight()">
+		<img src="italic.svg" onclick="changeFontStyle()">
+		<input type="color" id="color" oninput="changeTextColor()">
+		<select id="font" oninput="changeFontFamily()">
+			<option disabled>Select a font</option>
+			<option value="Consolas">Consolas</option>
+			<option value="Courier new">Courier new</option>
+			<option value="Bahnschrift Light">Bahnschrift Light</option>
+	        <option value="Arial">Arial</option>
+	        <option value="Trebuchet ms">Trebuchet ms</option>
+	        <option value="Comic sans ms">Comic sans ms</option>
+	        <option value="Lucida console">Lucida console</option>
+	        <option value="Verdana">Verdana</option>
+	        <option value="Corbel">Corbel</option>
+	        <option value="Source Code Pro">Source Code Pro</option>
+	        <option value="Roboto Mono">Roboto Mono</option>
+	        <option value="Azeret Mono">Azeret Mono</option>
+		</select>
+	</div>
+	
+	<div class="typing-area">
+		<textarea spellcheck="false" placeholder="Type something here" id="samp">
+
+		</textarea>
+	</div>
+	<script>
+		let textarea = document.getElementById('samp');
+		let toolbar = document.getElementById("toolbar");
+		textarea.style.width = toolbar.offsetWidth+"px";
+		function changeFontWeight(){
+			if(textarea.style.fontWeight == "normal"){
+				textarea.style.fontWeight = "bold";
+			}else{
+				textarea.style.fontWeight = "normal";
+			}
+		}
+
+		function changeFontStyle(){
+			if(textarea.style.fontStyle == "normal"){
+				textarea.style.fontStyle = "italic";
+			}else{
+				textarea.style.fontStyle = "normal";
+			}
+		}
+
+		function changeTextColor(){
+			let color = document.getElementById("color").value;
+			textarea.style.color = color;
+		}
+
+		function changeFontFamily(){
+			let font = document.getElementById("font").value;
+			textarea.style.fontFamily = font;
+		}
+	</script>
+</body>
+</html>
